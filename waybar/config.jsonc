@@ -1,0 +1,73 @@
+{
+	"position": "bottom",
+	"height": 60,
+	"modules-left": [
+		"clock",
+		"hyprland/window"
+	],
+	"modules-center": [
+		"hyprland/workspaces",
+		"custom/logo"
+	],
+	"modules-right": [
+		"tray",
+		"memory",
+		"cpu",
+		"disk",
+		"network",
+		"pulseaudio"
+	],
+	"clock": {
+		"format": "{:%a, %d %B %Y @ %H:%M:%S}",
+		"interval": 1
+	},
+	"hyprland/window": {
+		"format": "{}",
+		"rewrite": {
+			"(.*) — Mozilla Firefox": "$1",
+			"v (.*)": "neovim > [$1]"
+		},
+		"separate-outputs": true,
+		"icon": true
+	},
+	"hyprland/workspaces": {
+		"persistent-workspaces": {"*": 5},
+		"format": "{icon}"
+	},
+	"custom/logo": {
+		"format": "󰣇 "
+	},
+	"tray": {
+        	"icon-size": 20,
+        	"spacing": 10,
+        	"show-passive-items": false
+    	},
+    	"memory": {
+    		"interval": 5,
+		"format": " {percentage}% |"
+    	},
+    	"cpu": {
+		"interval": 5,
+		"format": " {usage}% |"
+    	},
+    	"disk": {
+		"interval": 60,
+		"format": " {percentage_used}%"
+    	},
+	"network": {
+        	"interval": 1,
+        	"tooltip": false,
+        	"format-wifi": "  {ipaddr}/{cidr} ",
+        	"format-disconnected": "󰖪",
+        	"on-click": "kitty -e nmtui"
+    	},
+	"pulseaudio": {
+        	"format": "|   {volume}%",
+        	"tooltip": false,
+        	"format-muted": " Muted",
+        	"on-click": "pavucontrol",
+        	"scroll-step": 5
+	}
+}
+
+

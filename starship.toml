@@ -1,0 +1,55 @@
+format = """
+[](#252222)\
+[󰣇 ](fg:#ffffff bg:#252222)\
+[](fg:#252222 bg:#3E3838)\
+$username\
+$hostname\
+[](bg:#4D4646 fg:#3E3838)\
+$directory\
+[](fg:#4D4646 bg:#6E6363)\
+$git_branch\
+[](fg:#6E6363 bg:#9C9191)\
+$c\
+$python\
+$rust\
+[ ](fg:#9C9191)\
+"""
+
+[username]
+show_always = true
+style_user = "bg:#3E3838"
+style_root = "fg:#FA2900 bg:#3E3838"
+format = '[ $user@]($style)'
+disabled = false
+
+[hostname]
+ssh_only = false
+trim_at = '.'
+format = '[$hostname ]($style)'
+style = "bg:#3E3838"
+
+[directory]
+style = "bg:#4D4646"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[c]
+symbol = " "
+style = "bg:#9C9191"
+format = '[ $symbol]($style)'
+
+[python]
+symbol = " "
+style = "bg:#9C9191"
+format = '[ $symbol]($style)'
+
+[git_branch]
+symbol = ""
+style = "bg:#6E6363"
+format = '[ $symbol $branch ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#9C9191"
+format = '[ $symbol]($style)'
