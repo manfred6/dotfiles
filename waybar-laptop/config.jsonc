@@ -1,0 +1,108 @@
+{
+	"position": "top",
+	"height": 23,
+	"modules-left": [
+        "custom/logo",
+        "cpu",
+        "memory",
+        "disk"
+	],
+	"modules-center": [
+        "niri/window",
+		"tray"
+	],
+	"modules-right": [
+		"network",
+        "bluetooth",
+        "niri/language",
+		"pulseaudio",
+        "backlight",
+        "battery",
+        "clock"
+	],
+	"clock": {
+		"format": "{:%H:%M %p}",
+		"interval": 30
+	},
+	"niri/window": {
+		"format": "{}",
+		"rewrite": {
+            "": "(ง •̀_•́)ง",
+			"(.*) — Mozilla Firefox": "Firefox",
+			"v (.*)": "neovim",
+            "discord.com/app.*": "Discord"
+		},
+		"separate-outputs": true,
+		"icon": true
+	},
+	"niri/workspaces": {
+		"persistent-workspaces": {"*": 5},
+		"format": "{icon}"
+	},
+	"custom/logo": {
+		"format": " 󰣇 "
+	},
+    "custom/divisor": {
+        "format": " 󰇙 "
+    },
+	"tray": {
+        	"icon-size": 20,
+        	"spacing": 10,
+        	"show-passive-items": false
+    	},
+    	"memory": {
+    		"interval": 5,
+		"format": "  {percentage}% "
+    	},
+    	"cpu": {
+		"interval": 5,
+		"format": " {usage}%"
+    	},
+    	"disk": {
+		"interval": 60,
+		"format": " {percentage_used}%"
+    	},
+	"network": {
+        	"interval": 1,
+        	"tooltip": false,
+        	"format-wifi": "  on",
+        	"format-disconnected": " 󰖪",
+        	"on-click": "kitty -e nmtui"
+    	},
+	"pulseaudio": {
+        	"format": "  {volume}%",
+        	"tooltip": false,
+        	"format-muted": "Muted  ",
+        	"on-click": "pavucontrol",
+        	"scroll-step": 5
+	},
+    "battery": {
+        //"bat": "BAT2",
+        "interval": 60,
+        "format": "{icon} {capacity}% ",
+        "format-icons": {
+            "default": ["󰂎 ", "󰁺 ", "󰁻 ", "󰁼 ", "󰁽 ", "󰁾 ", "󰁿 ", "󰂀 ", "󰂁 ", "󰂂 ", "󰁹 "],
+            "charging": ["󰢟 ", "󰢜 ", "󰂆 ", "󰂇 ", "󰂈 ", "󰢝 ", "󰂉 ", "󰢞 ", "󰂊 ", "󰂋 ", "󰂅 "]
+        }
+    },
+    "bluetooth": {
+    	"format": "  on",
+    	"format-disabled": " 󰂲 off", 
+    	"format-connected": " 󰂱 con",
+    	"tooltip-format": "{controller_alias}\t{controller_address}",
+    	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+    "niri/language": {
+    	"format": "{}",
+    	"format-en": "  en",
+    	"format-de": "  de"
+    },
+    "backlight": {
+    	"device": "intel_backlight",
+    	"format": "{icon} {percent}% ",
+    	"format-icons": ["", "󰃠"]
+    }
+}
+
+

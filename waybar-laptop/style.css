@@ -1,0 +1,134 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: Hack Nerd Font;
+    font-size: 16px;
+    min-height: 0;
+}
+
+
+window#waybar {
+    background: #252222;
+    color: #ffffff;
+}
+
+tooltip {
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #11111b;
+    margin-bottom: 20px;
+    padding-bottom: 80px;
+}
+
+
+#window,
+#clock,
+#cpu,
+#disk,
+#memory,
+#pulseaudio,
+#network,
+#workspaces,
+#tray,
+#language,
+#bluetooth,
+#battery,
+#backlight,
+#custom-divisor,
+#custom-logo {
+    background: #4d4646; 
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#workspaces {
+    padding-left: 15px;
+    padding-right: 5px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+#custom-logo {
+    font-size: 15px;
+    border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #eb6f92;
+}
+
+#cpu {
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+#memory {
+}
+
+#disk {
+    padding-right: 10px;
+    padding-left: 5px;
+    border-radius: 0px 10px 10px 0px;
+    margin-right: 5px;
+}
+
+window#waybar #window{
+	padding-right: 10px;
+	padding-left: 10px;
+	border-radius: 10px;
+    margin-right: 5px;
+}
+
+#tray {
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    font-size: 10px;
+}
+
+
+
+#network {
+    padding-left: 10px;
+    padding-right: 5px;
+    margin-left: 5px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+#language {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+#pulseaudio {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+#backlight {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#bluetooth {
+    padding-right: 5px;
+}
+
+#battery {
+    border-radius: 0px 10px 10px 0px;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+#clock {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
