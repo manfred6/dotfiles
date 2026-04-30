@@ -3,6 +3,7 @@ import Quickshell.Wayland
 import QtQuick
 import QtQuick.Effects
 import Quickshell.Services.SystemTray
+import Quickshell.Widgets
 
 // https://github.com/caelestia-dots/shell/blob/main/components/effects/InnerBorder.qml
 
@@ -16,18 +17,21 @@ Scope {
         color: "transparent"
         // no content — just reserves space
     }
+
     PanelWindow {
         anchors { top: true; right: true; bottom: true }
         width: Theme.rightWidth
         exclusiveZone: Theme.rightWidth
         color: "transparent"
     }
+
     PanelWindow {
         anchors { top: true; left: true; right: true }
         height: Theme.topHeight
         exclusiveZone: Theme.topHeight
         color: "transparent"
     }
+
     PanelWindow {
         anchors { bottom: true; left: true; right: true }
         height: Theme.botHeight
@@ -77,14 +81,53 @@ Scope {
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: Theme.botHeight
                     width: parent.width - 15
-                    height: 50
+                    height: powerGraphic.height + 10
                     radius: width / 2
-                    color: "#2a2a2a"
+                    color: Theme.colBar //Theme.nestedBackgroundElmnt
 
                     Power {
-                        id: power
+                        id: powerGraphic
                         anchors.top: parent.top
-                        anchors.topMargin: 10
+                        anchors.topMargin: 5
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+                }
+
+                Rectangle {
+                    id: botSysBackground
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottom: botPowerMenu.top//parent.bottom
+                    anchors.bottomMargin: Theme.botHeight
+                    width: parent.width - 15
+                    height: batteryGraphic.height + bluetoothGraphic.height + audioGraphic.height + languageGraphic.height
+                    radius: width / 2
+                    color: Theme.colBar //Theme.nestedBackgroundElmnt 
+
+                    Battery {
+                        id: batteryGraphic
+                        anchors.bottom: parent.bottom
+                        //anchors.bottomMargin: 10
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    Language {
+                        id: languageGraphic
+                        anchors.bottom: batteryGraphic.top
+                        //anchors.bottomMargin: 10
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    Bluetooth {
+                        id: bluetoothGraphic
+                        anchors.bottom: languageGraphic.top
+                        //anchors.bottomMargin: 10
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    Audio {
+                        id: audioGraphic
+                        anchors.bottom: bluetoothGraphic.top
+                        //anchors.bottomMargin: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }
@@ -92,7 +135,7 @@ Scope {
                 Rectangle {
                     id: botDateBackground
                     anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.bottom: botPowerMenu.top//parent.bottom
+                    anchors.bottom: botSysBackground.top//parent.bottom
                     anchors.bottomMargin: Theme.botHeight
                     width: parent.width - 15
                     height: dateTime.height + 20
@@ -125,28 +168,104 @@ Scope {
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }
-
-                // MID SECTION
+                
+                //PopupWindow {
+                //    id: sysStatsPopup
+                //    property bool open: false   // logical state
+                //    visible: false              // actual window visibility
+                //    color: "transparent"
                 //
+                //    implicitWidth: 300
+                //    implicitHeight: 750
                 //
+                //    anchor.window: root
+                //    anchor.rect.x: Theme.leftWidth                       // gap from ba
+                //    anchor.rect.y: (root.height - implicitHeight) / 2        // vertical middle
+                //
+                //    // show the window immediately when opening; hide it only AFTER close anim finishes
+                //    onOpenChanged: if (open) visible = true
+                //
+                //    Rectangle {
+                //        id: content
+                //        width: parent.width
+                //        height: parent.height
+                //        radius: 20
+                //        color: Theme.colBar
+                //        clip: true
+                //
+                //        // slides from -width (hidden) to 0 (fully shown)
+                //        x: sysStatsPopup.open ? 0 : -width
+                //
+                //        Behavior on x {
+                //            NumberAnimation {
+                //                duration: 220
+                //                easing.type: Easing.OutCubic
+                //                onRunningChanged: {
+                //                    if (!running && !sysStatsPopup.open)
+                //                        sysStatsPopup.visible = false
+                //                }
+                //            }
+                //        }
+                //
+                //        Column {
+                //            anchors.centerIn: parent
+                //            spacing: 14
+                //            Cpu { anchors.horizontalCenter: parent.horizontalCenter }
+                //            //Ram { anchors.horizontalCenter: parent.horizontalCenter }
+                //            // Net { anchors.horizontalCenter: parent.horizontalCenter }
+                //        }
+                //    }
+                //}
+                
+                //Rectangle {
+                //    id: topBattery
+                //    anchors.horizontalCenter: parent.horizontalCenter
+                //    anchors.top: topGraphic.bottom
+                //    anchors.topMargin: Theme.topHeight
+                //    width: parent.width - 15
+                //    height: batteryGraphic.height + 20
+                //    color: Theme.nestedBackgroundElmnt
+                //    radius: width / 2
 
-                // TOP SECTION
+                //    Battery {
+                //        id: batteryGraphic
+                //        anchors.top: parent.top
+                //        anchors.topMargin: 10
+                //        anchors.horizontalCenter: parent.horizontalCenter
+                //    }
+                //}
+
                 Rectangle {
-                    id: topSysStats
+                    id: topStats
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: topGraphic.bottom
                     anchors.topMargin: Theme.topHeight
                     width: parent.width - 15
-                    height: 50
-                    radius: 100
-                    color: "#2a2a2a"
+                    height: cpuGraphic.height + ramGraphic.height + diskGraphic.height + 20 + 10
+                    color: Theme.nestedBackgroundElmnt
+                    radius: width / 2
 
-                    Cpu { 
-                        id: cpu 
+                    Cpu {
+                        id: cpuGraphic
                         anchors.top: parent.top
                         anchors.topMargin: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
+
+                    Ram {
+                        id: ramGraphic
+                        anchors.top: cpuGraphic.bottom
+                        anchors.topMargin: 5
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    Disk {
+                        id: diskGraphic
+                        anchors.top: ramGraphic.bottom
+                        anchors.topMargin: 5
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
                 }
 
                 Rectangle {
@@ -157,7 +276,7 @@ Scope {
                     width: parent.width - 15
                     height: graphic.height + 20
                     radius: graphic.width 
-                    color: "#2a2a2a"
+                    color: Theme.colBar
 
                     Graphic { 
                         id: graphic 
@@ -165,9 +284,12 @@ Scope {
                         anchors.topMargin: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
-                }
 
-                
+                   MouseArea {
+                        anchors.fill: parent
+                        onClicked: sysStatsPopup.open = !sysStatsPopup.open
+                    }
+                }
             }
 
             Item {
@@ -194,7 +316,6 @@ Scope {
                 
                 height: Theme.botHeight
             }
-            
         }
 
         Item {

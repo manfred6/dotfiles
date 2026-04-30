@@ -3,8 +3,6 @@ import Quickshell.Wayland
 import QtQuick
 import Quickshell.Io
 
-// thanks tonybtw
-
 Item {
 
     implicitWidth: colCpu.implicitWidth
@@ -17,7 +15,8 @@ Item {
     Process {
         id: cpuProc
         command: ["sh", "-c", "head -1 /proc/stat"]
-        
+
+        // thanks tony 
         stdout: SplitParser {
             onRead: data => {
                 var p = data.trim().split(/\s+/)
@@ -32,37 +31,38 @@ Item {
         }
 
         Component.onCompleted: running = true
-
     }
 
     Timer {
-        interval: 2000
+        interval: 3000
         running: true
         repeat: true
+        triggeredOnStart: true
         onTriggered: cpuProc.running = true
     }
 
-    Text {
-        id: cpuIcon
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: 8
-        text: "\ue30d"  // developer_board
-        color: Theme.colText
-        font.family: Theme.iconFont
-        font.pixelSize: Theme.fontSize
-    }
-    
-    Text {
-
-        id: colCpu
-        anchors.centerIn: parent
-        text: cpuUsage
-        color: Theme.colText
-        font {
-            family: Theme.fontFamily
-            pixelSize: Theme.fontSize
-            bold: true
+    Column {
+        id: colCpu 
+        spacing: 0
+        Text {
+            id: cpuIcon
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "\ue30d"  // developer_board
+            color: Theme.colCpu
+            font.family: Theme.iconFont
+            font.pixelSize: Theme.fontSize
+        }
+        
+        Text {
+            id: cpuText
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: cpuUsage + "%"
+            color: Theme.colCpu
+            font {
+                family: Theme.fontFamily
+                pixelSize: Theme.fontSize - Theme.fontSize * 0.25
+                bold: false
+            }
         }
     }
 }

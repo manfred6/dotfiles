@@ -3,14 +3,15 @@ import QtQuick
 
 Item {
 
+    implicitWidth: powerIcon.implicitWidth
+    implicitHeight: powerIcon.implicitHeight
+
     Text {
         id: powerIcon 
         anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.top: parent.top
-        //anchors.topMargin: 8
         text: "\ue8ac"  // power_settings_new
-        color: Theme.colText
+        color: Theme.colPower
         font.family: Theme.iconFont
-        font.pixelSize: 24
+        font.pixelSize: Theme.fontSize
     }
 }
