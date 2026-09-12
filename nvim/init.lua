@@ -8,25 +8,33 @@ vim.o.shiftwidth = 4 -- spaces per indentation level
 vim.o.signcolumn = "yes"
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>w', ':write<CR>')
-vim.keymap.set('n', '<leader>q', ':quit<CR>')
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.keymap.set('n', '<leader>ff', ':Pick files<CR>')
-vim.keymap.set('n', '<leader>ge', ':Oil<CR>')
+vim.keymap.set("n", "<leader>w", ":write<CR>")
+vim.keymap.set("n", "<leader>q", ":quit<CR>")
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>ff", ":Pick files<CR>")
+vim.keymap.set("n", "<leader>ge", ":Oil<CR>")
 
 vim.pack.add({
-    {src= "https://github.com/ellisonleao/gruvbox.nvim"},
+    -- {src= "https://github.com/ellisonleao/gruvbox.nvim"},
+    {src="https://github.com/rose-pine/neovim"},
     {src="https://github.com/stevearc/oil.nvim"},
     {src="https://github.com/nvim-mini/mini.pick"},
     {src="https://github.com/neovim/nvim-lspconfig"},
 })
 
 require "mini.pick".setup()
-require "oil".setup()
+require("oil").setup({
+  view_options = {
+    show_hidden = true,
+  },
+})
 
-vim.lsp.enable({"lua_ls", "python", "bash", "c", "powershell"})
+vim.lsp.enable({"lua_ls", "bashls", "ccls", "powershell_es", "terraformls", "gopls"})
+vim.diagnostic.config({
+  virtual_text = true
+})
 
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme rose-pine")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
